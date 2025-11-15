@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" href="/static/style.css">
+<head>
+  <title>some-app</title>
+</head>
+
+<body>
+  <form action="/register" method="post">
+    {% if session.name_not_available %}
+    <p>
+      Username not available
+    </p> 
+    {% endif %}
+     <p>
+      Tunnus: <br />
+      {% if session.retry %}
+      <input type="text" name="username", value={{ session.sign_in_attempt }} />
+      {% else %}
+      <input type="text" name="username"/>
+      {% endif %}
+    </p>
+    {% if session.no_match %}
+    <p>
+      passwords do not match
+    </p> 
+    {% endif %}
+    <p>
+      Salasana: <br />
+      <input type="password" name="password1" />
+    </p>
+    <p>
+      Toista salasana: <br />
+      <input type="password" name="password2" />
+    </p>
+    <input type="submit" value="sign in" />
+  </form>
+</body>
+
+</html>
+

@@ -1,0 +1,41 @@
+
+
+* {
+  color: white;
+  background-color: darkslategrey; 
+  text-align: center;              
+}
+
+body {
+  background-color: darkslategrey;
+}
+
+p {
+}
+
+main {
+  width:600px;
+  height:1000px;
+  background-color: slategrey;
+  position: absolute;
+  left: calc(50% - 300px);
+}
+
+.signIn {
+  width:200px;
+  height:300px;
+  background-color: slategrey;
+  align-content: center;
+  left: calc(50% - 100px);
+  position: absolute;
+}
+
+.login {
+  width:200px;
+  height:300px;
+  background-color: slategrey;
+  align-content: center;
+  margin: 10px;
+  left: calc(300px + 50%);
+  position: relative;
+}
