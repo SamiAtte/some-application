@@ -3,6 +3,7 @@
 
 CREATE TABLE Messages (
   id INTEGER PRIMARY KEY,
+  comments_section INTEGER,
   message_target INTEGER,
   message_content INTEGER,
   message_time TEXT
@@ -19,19 +20,31 @@ CREATE TABLE Users (
     password_hash TEXT
 );
 
-CREATE TABLE UserProfiles (
+
+CREATE TABLE Posts (
     id INTEGER PRIMARY KEY,
-    user_id TEXT UNIQUE,
-    post_pools INTEGER
+    poster INTEGER,
+    post_pool INTEGER,
+    post_headline TEXT
+);
+
+CREATE TABLE PostContents (
+    id INTEGER PRIMARY KEY,
+    post INTEGER,
+    content TEXT
+);
+
+CREATE TABLE CommentsSections (
+    id INTEGER PRIMARY KEY,
+    post INTEGER
 );
 
 
 
-CREATE TABLE Posts (
+CREATE TABLE PostPools (
     id INTEGER PRIMARY KEY,
-    post_headline TEXT UNIQUE,
-    post_content INTEGER,
-    post_comments INTEGER
+    owner INTEGER,
+    post_pool_title TEXT
 );
 
 

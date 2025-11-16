@@ -1,1 +1,5 @@
 venv
+__*
+*.nix
+*.db
+testailua

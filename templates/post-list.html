@@ -1,0 +1,10 @@
+<div class="post-list">
+   <ul>
+    posts:
+    {% for post in posts %}
+    <li><a href="/post/{{ post[1]}}">{{post[0]}}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+

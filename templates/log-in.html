@@ -1,0 +1,34 @@
+<div class="login">
+  {% if session.username %}
+  <h3 id="username">
+    {{ session.username }}
+  </h3>
+  <ul>
+    <li><a href="/user/{{ session.user_id }}">User page</a></li>
+    <li><a href="/log_out">Log out</a></li>
+  </ul>
+  {% else %}
+  <form action="/log_in" method="post">
+    {% if session.log_in_error %}
+    <p class="error">
+      Wrong username or password
+    </p>
+    {% endif %}
+    <p>
+      Username: <br />
+      <input type="text" name="username" class="field"/>
+    </p>
+    <p>
+      Password: <br />
+      <input type="password" name="password" class="field"/>
+    </p>
+    <input type="submit" value="login" class="login-button"/>
+  </form>
+  <form action="/sign_in">
+    <input type="submit" value="sign in" class="login-button"/>
+  </form>
+  {% endif %}
+  <a href="/">front page</a>
+</div>
+
+

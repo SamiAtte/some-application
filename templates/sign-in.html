@@ -7,9 +7,10 @@
 </head>
 
 <body>
+  <div class="signIn">
   <form action="/register" method="post">
     {% if session.name_not_available %}
-    <p>
+    <p class="error">
       Username not available
     </p> 
     {% endif %}
@@ -22,7 +23,7 @@
       {% endif %}
     </p>
     {% if session.no_match %}
-    <p>
+    <p class="error">
       passwords do not match
     </p> 
     {% endif %}
@@ -34,8 +35,9 @@
       Toista salasana: <br />
       <input type="password" name="password2" />
     </p>
-    <input type="submit" value="sign in" />
+    <input type="submit" value="sign in" class="login-button"/>
   </form>
+  </div> 
 </body>
 
 </html>

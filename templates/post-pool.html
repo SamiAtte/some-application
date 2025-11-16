@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>some-app</title>
+</head>
+
+<body>
+  <link rel="stylesheet" href="/static/style.css">
+  <main class="post-list">
+    <h1>pool: {{ title }}</h1>
+    owner: 
+    <a href="/user/{{owner_id}}">{{owner_name}}</a>
+      {% if owner_id == session.user_id %}
+        <form action="/post_pool/{{ post_pool_id }}/delete" method="post">
+          <input type="submit" value="delete"/>
+        </form>
+      {% endif %}
+      {% if session.username %}
+        <ul>
+          <li id="new-post"><a href="/post_pool/{{post_pool_id}}/{{ session.user_id }}/make_post">new post</a></li>
+        </ul>
+      {% endif %}
+      {% include 'post-list.html' %}
+    </div>
+  </main>
+  {% include 'log-in.html' %}
+</body>
+
+</html>
+

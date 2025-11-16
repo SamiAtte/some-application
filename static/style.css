@@ -1,30 +1,42 @@
 
 
 * {
-  color: white;
-  background-color: darkslategrey; 
+/*  color: white;*/
+/*  background-color: darkslategrey; */
   text-align: center;              
 }
 
 body {
-  background-color: darkslategrey;
+/*  background-color: darkslategrey;*/
 }
 
-p {
-}
 
 main {
   width:600px;
   height:1000px;
-  background-color: slategrey;
+/*  background-color: slategrey;*/
   position: absolute;
+  border-style: solid;
   left: calc(50% - 300px);
+  padding:5px;
 }
+
+.class {
+  width:200px;
+  height:300px;
+}
+
+#username {
+  border-style: solid;
+  text-align: center;
+}
+
+
 
 .signIn {
   width:200px;
   height:300px;
-  background-color: slategrey;
+/*  background-color: slategrey;*/
   align-content: center;
   left: calc(50% - 100px);
   position: absolute;
@@ -33,9 +45,122 @@ main {
 .login {
   width:200px;
   height:300px;
-  background-color: slategrey;
+/*  background-color: firebrick;*/
+  margin: 10px;
+  left: calc(300px + 50% + 10px);
+  position: relative;
+  padding: 2px;
+  border-style: solid;
+}
+
+.login-button {
+  width: 70%;
+  /*background-color: darkred;*/
   align-content: center;
   margin: 10px;
-  left: calc(300px + 50%);
+}
+
+.login .field {
+/*  background-color: darkred;*/
+  width: 96%;
+}
+
+.login ul {
+  list-style: none;
   position: relative;
+/*  background-color: khaki;*/
+  padding: 2px;
+}
+
+.login li {
+  align-content: center;
+/*  background-color: pink;*/
+  border-style: outset;
+  margin: 5px;
+  padding: 2px;
+}
+
+.login a {
+/*  background-color: grey;*/
+  margin: 5px;
+}
+
+.login p {
+  text-align: left;
+/*  background-color: darkred;*/
+  padding:5px;
+}
+
+.post-list ul {
+  list-style: none;
+  position: relative;
+/*  background-color: khaki;*/
+  padding: 2px;
+  text-align: left;
+  border-style: inset;
+}
+
+.pool-list ul {
+  list-style: none;
+  position: relative;
+/*  background-color: khaki;*/
+  padding: 2px;
+  text-align: left;
+  border-style: inset;
+}
+
+.pool-list li {
+  text-align: left;
+  border-style: outset;
+  margin: 5px;
+  padding: 5px;
+}
+
+
+
+#new-post {
+  text-align: left;
+  border-style: outset;
+  width: 20%;
+  margin: 5px;
+  padding: 5px;
+}
+
+
+.post-list li {
+  text-align: left;
+  border-style: outset;
+  margin: 5px;
+  padding: 5px;
+}
+
+.post p {
+  text-align: left;
+  border-style: inset;
+  margin: 5px;
+  padding: 5px;
+}
+
+#make-post-headline {
+  text-align: left;
+  border-style: inset;
+  width: 95%;
+  margin: 5px;
+  padding: 5px;
+}
+
+#make-post-content {
+  text-align: left;
+  border-style: inset;
+  width: 95%;
+  margin: 5px;
+  padding: 5px;
+}
+
+.make-post {
+  text-align: left;
+}
+
+.error {
+  color: red;
 }
