@@ -1,0 +1,35 @@
+{% from "macros.html" import link_button, text_link %}
+<div class="user-element">
+  {% if session.username %}
+    <h3>{{ session.username }}</h3>
+    {{ link_button("user/", session.user_id, text_link("user page")) }}
+    {{ link_button("/", "log_out", text_link("log out")) }}
+  {% else %}
+    <form action="/log_in" method="post">
+      {% if session.log_in_error %}
+        <p class="error">
+          Wrong username or password
+        </p>
+      {% endif %}
+        <p>
+          Username: <br />
+          <input type="text" name="username" class="field"/>
+        </p>
+        <p>
+          Password: <br />
+          <input type="password" name="password" class="field"/>
+        </p>
+        <input type="submit" value="login" id="user-element-button"/>
+    </form>
+    <form action="/sign_in">
+      <input type="submit" value="sign in" id="user-element-button"/>
+    </form>
+{#  <form action="/">
+      <input type="submit" value="front page" id="user-element-button"/>
+    </form> #}
+  {% endif %}
+      {{ link_button("/", "", text_link("front page")) }}
+</div>
+
+
+

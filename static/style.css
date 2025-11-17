@@ -11,6 +11,7 @@
   margin-left: calc(50% - 250px);
   border-radius: 8px;
   background-color: #777;
+  position: absolute;
 }
 
 .main h1 {
@@ -106,7 +107,7 @@
   background-color: var(--pool-header-bg);
 }
 
-.tab-link {
+.text-link {
   background-color: #444;
   border-radius: 5px 5px 5px 5px;
   padding: 2px;
@@ -117,16 +118,16 @@
   display: inline;
 }
 
-.tab-link:hover {
+.text-link:hover {
   background-color: #333;
 }
 
-.tab-link:hover p {
+.text-link:hover p {
   color: #fff;
   background-color: #333;
 }
 
-.tab-link p {
+.text-link p {
   background-color: #444;
   color: #eee;
   line-height: 80%;
@@ -137,7 +138,81 @@
 
 
 
+.user-element {
+  width: 200px;
+  background-color: #777;
+  position: relative;
+  margin: 10px;
+  padding: 10px;
+  left: calc(50% + 250px + 30px);
+  border-style: solid;
+  border-radius: 8px;
+}
 
+.user-element input {
+  color: #eee;
+  background-color: #bbb;
+  width: 90%;
+  margin: 2px;
+  padding: 0px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+.user-element .field {
+  color: #111;
+}
+
+#user-element-button {
+  color: #eee;
+  font-size: 12px;
+  background-color: #444;
+  width: 90%;
+  margin: 4px;
+  padding: 2px;
+  border-style: none;
+  border-radius: 5px; 
+}
+
+#user-element-button:hover {
+  color: #fff;
+  background-color: #333;
+}
+
+.user-element p {
+  margin: 2px;
+  padding: 0px;
+}
+
+.user-element h3 {
+  background-color: #bbb;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 0px 10px 10px 10px;
+}
+
+.user-element .link-button p {
+  color: #eee;
+  background-color: #444;
+  font-size: 12px;
+  width: 88%;
+  margin: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 2px;
+  border-style: none;
+  border-radius: 5px; 
+  position: relative;
+}
+
+.user-element .link-button p:hover {
+  color: #fff;
+  background-color: #333;
+}
+
+.user-element * {
+  background-color: #777;
+  text-align: center;
+}
 
 
 

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-{% from "macros.html" import link_button, tab_link %}
+{% from "macros.html" import link_button, text_link %}
 <html>
-
 
 <head>
   <title>some-app</title>
@@ -14,8 +13,8 @@
     <div class="tab-label">
       <p>Pools</p>
     </div>
-    <div class="tab-link">
-      {{ link_button("/", "users", tab_link("Users")) }}
+    <div class="text-link">
+      {{ link_button("/", "users", text_link("Users")) }}
     </div>
     <div class="tab-page">
       <div>
@@ -23,6 +22,7 @@
       </div>
     </div>
   </main>
+  {% include 'user-element.html' %}
 </body>
 
 </html>
