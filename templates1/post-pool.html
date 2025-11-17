@@ -18,7 +18,11 @@
       {% endif %}
       {% if session.username %}
         <ul>
-          <li id="new-post"><a href="/post_pool/{{post_pool_id}}/{{ session.user_id }}/make_post">new post</a></li>
+          <li id="new-post">
+            <a class="mButton" href="/post_pool/{{post_pool_id}}/{{ session.user_id }}/make_post">
+                new post
+            </a>
+          </li>
         </ul>
       {% endif %}
       {% include 'post-list.html' %}

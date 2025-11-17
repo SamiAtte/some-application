@@ -1,0 +1,18 @@
+
+{% macro link_button(trunk, target,visual) %}  
+  <a class="link-button" href="{{ trunk }}{{ target }}">{{ visual }}</a>
+{% endmacro %}
+
+{% macro post_pool_header(name, poster="", count="") %}  
+  <div class="post-pool-header">
+    <h3>{{ name }}</h3>
+    <p>owner: {{ poster }}</p>
+    <p>posts: {{ count }}</p>
+  </div>
+{% endmacro %}
+
+{% macro tab_link(text) %}
+  <p>{{text}}</p>
+{% endmacro %}
+
+

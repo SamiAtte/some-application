@@ -1,9 +1,9 @@
+{% from "macros.html" import link_button, post_pool_header %}
 <div class="pool-list">
   <ul>
-    Pools:
     {% for post_pool in post_pools %}
-    <li><a href="/post_pool/{{ post_pool[1]}}">{{post_pool[0]}}</a></li>
-    {% endfor %}
+    <li>{{ link_button("/post_pool/", post_pool[1], post_pool_header(post_pool[0],"pete","0")) }}</li>
+    {% endfor %} 
   </ul>
 </div>
 
