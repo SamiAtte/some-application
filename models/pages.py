@@ -3,6 +3,26 @@ import db
 from utilities import multi_list
 from app1 import app
 
+
+
+
+
+@app.route("/pools")
+def pools():
+  post_pool_sql = '''
+      SELECT A.post_pool_title, A.id, B.username, C.count
+      FROM PostPools A
+      LEFT JOIN Users B ON B.id = A.owner
+      LEFT JOIN (SELECT post_pool, COUNT(*) AS count FROM Posts GROUP BY post_pool) C ON C.post_pool = A.id
+    '''
+  post_pool_query = db.query(post_pool_sql, [])
+
+  post_pools = multi_list(post_pool_query, list(range(0,4)))
+
+  return render_template("post-pools.html", post_pools=post_pools)
+
+
+
 @app.route("/user/<int:user_id>")
 def user_page(user_id):
   user_sql = "SELECT username FROM Users WHERE id = ?"
@@ -18,26 +38,29 @@ def user_page(user_id):
 
 @app.route("/post_pool/<int:post_pool_id>")
 def post_pool(post_pool_id):
-  title_sql = "SELECT post_pool_title,owner FROM PostPools WHERE id = ?"
-  title_query = db.query(title_sql, [post_pool_id])
-  title = title_query[0][0]
-  owner_id =  title_query[0][1]
+  pool_sql = '''
+      SELECT A.post_pool_title, B.id, B.username
+      FROM PostPools A
+      LEFT JOIN Users B ON A.owner = B.id
+      WHERE A.id = ?
+    '''
+  pool_query = db.query(pool_sql, [post_pool_id])
+  pool_info = multi_list(pool_query, list(range(0,3)))
 
-  user_sql = "SELECT username FROM Users WHERE id = ?"
-  user_query = db.query(user_sql, [owner_id])
-  owner_name = user_query[0][0]
-
-  posts_sql = "SELECT post_headline,id FROM Posts WHERE post_pool = ?"
+  posts_sql = ''' 
+      SELECT A.id, A.post_headline, A.poster, B.username, D.count, E.content
+      FROM Posts A
+      LEFT JOIN PostContents E ON A.id = E.post
+      LEFT JOIN Users B ON A.poster = B.id
+      LEFT JOIN CommentsSections C ON A.id = C.post
+      LEFT JOIN (SELECT comments_section, COUNT(*) AS count FROM Messages GROUP BY comments_section) D
+        ON D.comments_section = C.id
+      WHERE A.post_pool = ?
+    '''
   posts_query = db.query(posts_sql, [post_pool_id])
-  posts = multi_list(posts_query,[0,1])
+  posts = multi_list(posts_query, list(range(0,6)))
 
-  return render_template(
-      "post-pool.html", 
-      owner_id=owner_id, 
-      owner_name=owner_name,
-      post_pool_id=post_pool_id, 
-      title=title, 
-      posts=posts)
+  return render_template("post-pool.html", post_pool_info=pool_info[0], posts=posts)
 
 @app.route("/post/<int:post_id>")
 def post(post_id):
@@ -50,8 +73,9 @@ def post(post_id):
   '''
   post_query = db.query(post_sql, [post_id])
   post_query = post_query[0]
+# posts = multi_list(posts_query,list(range(0,4))
 
-  return render_template("post.html", 
+  return render_template("post.html",# posts=posts)
     headline=post_query[0], 
     poster_id=post_query[1], 
     post_id=post_id,

@@ -2,7 +2,7 @@
 <div class="pool-list">
   <ul>
     {% for post_pool in post_pools %}
-    <li>{{ link_button("/post_pool/", post_pool[1], post_pool_header(post_pool[0],"pete","0")) }}</li>
+    <li>{{ link_button("/post_pool/", post_pool[1], post_pool_header(post_pool[0],post_pool[2],post_pool[3])) }}</li>
     {% endfor %} 
   </ul>
 </div>

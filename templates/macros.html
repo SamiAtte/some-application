@@ -11,6 +11,16 @@
   </div>
 {% endmacro %}
 
+{% macro post_header(name, poster="", count="", content="") %}  
+  <div class="post-pool-header">
+    <h3>{{ name }}</h3>
+    <p id="content">{{ content }}</p>
+    <p>poster: {{ poster }}, comments: {{ count }}</p>
+  </div>
+{% endmacro %}
+
+
+
 {% macro text_link(text) %}
   <p>{{text}}</p>
 {% endmacro %}

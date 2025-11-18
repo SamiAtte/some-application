@@ -13,12 +13,7 @@ from app1 import app
 
 @app.route("/")
 def index():
-  post_pool_sql = "SELECT post_pool_title,id FROM PostPools"
-  post_pool_query = db.query(post_pool_sql, [])
-
-  post_pools = multi_list(post_pool_query,[0,1])
-
-  return render_template("index.html", post_pools=post_pools)
+  return redirect("/pools")
 
 
 

@@ -204,6 +204,11 @@
   position: relative;
 }
 
+.error {
+  color: #500;
+  font-size: 12px;
+}
+
 .user-element .link-button p:hover {
   color: #fff;
   background-color: #333;
@@ -214,7 +219,12 @@
   text-align: center;
 }
 
-
+#content {
+  color: #111;
+  background-color: #aaa;
+  border-radius: 5px; 
+  margin: 5px;
+}
 
 
 
