@@ -1,0 +1,186 @@
+
+:root {
+  --main-color-bg: #ccc;
+  --border-rounding: 3px;
+  --text-height: 15px;
+  --button-height: calc(var(--text-height) + 4px);
+  --button-list-margin: 3px;
+  --button-list-padding: 5px;
+  --vertical-button-gap: 3px;
+  --horizontal-button-gap: 3px;
+}
+
+
+.main {
+  background-color: var(--main-color-bg);
+  width: 400px;
+  left: calc(50% - 200px);
+  position: absolute;
+  border-radius: var(--border-rounding);
+}
+
+
+
+.vertical-button-list li {
+  margin: var(--vertical-button-gap) 0px var(--vertical-button-gap) 0px;
+}
+
+.vertical-button-list li.top {
+  margin: 0px 0px var(--vertical-button-gap) 0px;
+}
+
+.vertical-button-list li.bottom {
+  margin: var(--vertical-button-gap) 0px 0px 0px;
+}
+
+.vertical-button-list ul {
+  margin: var(--button-list-margin);
+  padding: var(--button-list-padding);
+  list-style: none;
+  background-color: blue;
+  border-radius: var(--border-rounding);
+}
+
+.vertical-button-list {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  border-radius: var(--border-rounding);
+}
+
+
+
+
+.horizontal-button-list {
+  --n-buttons: 4;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  font-size: 0px;
+  border-radius: var(--border-rounding);
+}
+
+.horizontal-button-list ul {
+  margin: var(--button-list-margin);
+  padding: var(--button-list-padding);
+  list-style: none;
+  background-color: blue;
+  border-radius: var(--border-rounding);
+}
+
+.horizontal-button-list li.first {
+  margin: 0px calc(var(--horizontal-button-gap) / 2) 0px 0px;
+}
+
+.horizontal-button-list li.last {
+  margin: 0px 0px 0px calc(var(--horizontal-button-gap) / 2);
+}
+
+.horizontal-button-list li {
+  display: inline-block;
+  margin: 0px calc(var(--horizontal-button-gap) / 2) 0px calc(var(--horizontal-button-gap) / 2);
+  width: calc(100% / var(--n-buttons) - calc(var(--n-buttons) - 1) / var(--n-buttons) * var(--horizontal-button-gap));
+}
+
+
+a.link-button {
+  display: block;
+  color: black;
+  text-decoration: none;
+  background-color: pink;
+  min-height: var(--button-height);
+  font-size: var(--text-height);
+  border-radius: var(--border-rounding);
+}
+
+a.link-button:hover {
+  background-color: #fee;
+}
+
+input.field {
+  width: calc(100% - 2 * var(--button-list-padding));
+}
+
+input.form-button {
+  color: black;
+  text-decoration: none;
+  background-color: pink;
+  font-size: var(--text-height);
+  min-height: var(--button-height);
+  width: 100%;
+  border-radius: var(--border-rounding);
+  border-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+input.form-button:hover {
+  background-color: #fee;
+}
+
+
+label {
+  display: block;
+  color: white;
+/*background-color: #fee;*/
+  text-align: left;
+  margin: 5px 3px 3px 3px;
+}
+
+
+
+.active-tab p {
+  display: block;
+  color: black;
+  text-decoration: none;
+  background-color: yellow;
+  min-height: calc(var(--button-height) + var(--button-list-padding));
+  font-size: var(--text-height);
+  border-radius: var(--border-rounding) var(--border-rounding) 0px 0px;
+  margin: 0;
+  padding: 0;
+}
+
+.tab-buttons .horizontal-button-list ul {
+  margin: var(--button-list-margin);
+  border-radius: var(--border-rounding) var(--border-rounding) 0px 0px;
+  margin-bottom: 0px;
+  padding: var(--button-list-padding);
+  padding-bottom: 0px;
+} 
+
+
+.tab-buttons .horizontal-button-list li {
+  padding-bottom:  var(--button-list-padding);
+}
+
+.tab-buttons .horizontal-button-list li.active-tab {
+  padding-bottom: 0px;
+}
+
+
+
+.tab-content p {
+  background-color: pink;
+  margin: 0px;
+}
+
+.tab-content {
+  background-color: yellow;
+  font-size: var(--text-height);
+  border-radius: 0px 0px var(--border-rounding) var(--border-rounding);
+  margin: 3px;
+  margin-top: 0px;
+  padding: 3px;
+}
+
+
+
+
+
+
+
+
+
+
+

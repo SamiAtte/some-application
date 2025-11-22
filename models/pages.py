@@ -65,21 +65,15 @@ def post_pool(post_pool_id):
 @app.route("/post/<int:post_id>")
 def post(post_id):
   post_sql = '''
-    SELECT A.post_headline, A.poster, B.content, C.post_pool_title
+    SELECT A.post_headline, A.poster, B.content, C.post_pool_title, D.username
     FROM Posts A
     LEFT JOIN PostContents B ON A.id = B.post
     LEFT JOIN PostPools C on C.id = A.post_pool
+    LEFT JOIN Users D on D.id = A.poster
     WHERE A.id = ?
   '''
   post_query = db.query(post_sql, [post_id])
-  post_query = post_query[0]
-# posts = multi_list(posts_query,list(range(0,4))
+  post = multi_list(post_query,list(range(0,5)))
 
-  return render_template("post.html",# posts=posts)
-    headline=post_query[0], 
-    poster_id=post_query[1], 
-    post_id=post_id,
-    title=post_query[3], 
-    content=post_query[2])
-
+  return render_template("post.html", post=post[0])
 
