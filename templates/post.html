@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% from "macros.html" import link_button, text_link %}
+<html>
+
+<head>
+  <title>some-app</title>
+</head>
+
+<body>
+  <link rel="stylesheet" href="/static/style.css">
+  <main class="main">
+    <h1>{{ post[0] }}</h1>
+    {#
+    <div class="tab-label">
+      <p>Pools</p>
+    </div>
+    <div class="button-row">
+      <div class="text-link">
+        {{ link_button("/users/", post[1], text_link(post[4])) }}
+      </div>
+    #}
+    <div class="button-row">
+      <div class="text-link">
+        {{ link_button("/users/", post[1], text_link(post[4])) }}
+      </div>
+      <div class="text-link">
+        {{ link_button("/users/", post[1], text_link(post[4])) }}
+      </div>
+    </div>
+    <div class="post">
+      <p> {{post[2]}} </p>
+    </div>
+  </main>
+  {% include 'user-element.html' %}
+</body>
+
+</html>
+

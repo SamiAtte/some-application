@@ -226,7 +226,30 @@
   margin: 5px;
 }
 
+.post p {
+  color: #111;
+  background-color: #aaa;
+  border-radius: 5px; 
+  padding: 5px;
+  margin: 1px;
+  border-style: inset;
+  border-color: #333 #888 #888 #333;
+  text-align: left;
+}
 
 
+.post  {
+  background-color: #777;
+  margin: 50px 0px 0px 0px;
+  padding: 1px;
+  border-radius: 5px; 
+}
+
+.button-row  {
+  font-size: 12px;
+  margin: 0px;
+  padding: 0px;
+  border-radius: 5px; 
+}
 
 
