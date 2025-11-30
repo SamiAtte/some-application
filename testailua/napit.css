@@ -1,22 +1,38 @@
 
 :root {
-  --main-color-bg: #ccc;
-  --border-rounding: 3px;
+  --main-color: #ccc;
+  --border-rounding: 4px;
   --text-height: 15px;
   --button-height: calc(var(--text-height) + 4px);
   --button-list-margin: 3px;
   --button-list-padding: 5px;
   --vertical-button-gap: 3px;
   --horizontal-button-gap: 3px;
+  --block-color: #445;
+  --element-color: #aab;
+  --hover-color: #eef;
+  --active-color: #778;
+  --text-color1: black;
+  --text-color2: white;
+  --bg-color: #777;
 }
 
+h1 {
+  padding: 5px;
+}
+
+html {
+  background-color: var(--bg-color);
+}
 
 .main {
-  background-color: var(--main-color-bg);
+  background-color: var(--main-color);
   width: 400px;
   left: calc(50% - 200px);
   position: absolute;
   border-radius: var(--border-rounding);
+  border-style: solid;
+  margin-bottom: 5px;
 }
 
 
@@ -37,7 +53,7 @@
   margin: var(--button-list-margin);
   padding: var(--button-list-padding);
   list-style: none;
-  background-color: blue;
+  background-color: var(--block-color);
   border-radius: var(--border-rounding);
 }
 
@@ -64,7 +80,7 @@
   margin: var(--button-list-margin);
   padding: var(--button-list-padding);
   list-style: none;
-  background-color: blue;
+  background-color: var(--block-color);
   border-radius: var(--border-rounding);
 }
 
@@ -85,16 +101,16 @@
 
 a.link-button {
   display: block;
-  color: black;
+  color: var(--text-color1);
   text-decoration: none;
-  background-color: pink;
+  background-color: var(--element-color);
   min-height: var(--button-height);
   font-size: var(--text-height);
   border-radius: var(--border-rounding);
 }
 
 a.link-button:hover {
-  background-color: #fee;
+  background-color: var(--hover-color);
 }
 
 input.field {
@@ -102,9 +118,9 @@ input.field {
 }
 
 input.form-button {
-  color: black;
+  color: var(--text-color1);
   text-decoration: none;
-  background-color: pink;
+  background-color: var(--element-color);
   font-size: var(--text-height);
   min-height: var(--button-height);
   width: 100%;
@@ -115,13 +131,13 @@ input.form-button {
 }
 
 input.form-button:hover {
-  background-color: #fee;
+  background-color: var(--hover-color);
 }
 
 
 label {
   display: block;
-  color: white;
+  color: var(--text-color2);
 /*background-color: #fee;*/
   text-align: left;
   margin: 5px 3px 3px 3px;
@@ -131,9 +147,9 @@ label {
 
 .active-tab p {
   display: block;
-  color: black;
+  color: var(--text-color2);
   text-decoration: none;
-  background-color: yellow;
+  background-color: var(--active-color);
   min-height: calc(var(--button-height) + var(--button-list-padding));
   font-size: var(--text-height);
   border-radius: var(--border-rounding) var(--border-rounding) 0px 0px;
@@ -161,12 +177,16 @@ label {
 
 
 .tab-content p {
-  background-color: pink;
+  display: block;
+  background-color: var(--element-color);
   margin: 0px;
+  min-height: 50px;
+  border-radius: 0px 0px var(--border-rounding) var(--border-rounding);
+  padding: 3px;
 }
 
 .tab-content {
-  background-color: yellow;
+  background-color: var(--active-color);
   font-size: var(--text-height);
   border-radius: 0px 0px var(--border-rounding) var(--border-rounding);
   margin: 3px;
