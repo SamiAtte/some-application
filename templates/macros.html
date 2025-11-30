@@ -11,9 +11,9 @@
   </div>
 {% endmacro %}
 
-{% macro post_header(name, poster="", count="", content="") %}  
+{% macro post_header(name, poster="", count="", content="", pool="") %}  
   <div class="post-pool-header">
-    <h3>{{ name }}</h3>
+    <h3>{{ pool }}/{{ name }}</h3>
     <p id="content">{{ content }}</p>
     <p>poster: {{ poster }}, comments: {{ count }}</p>
   </div>

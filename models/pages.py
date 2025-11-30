@@ -19,7 +19,23 @@ def pools():
 
   post_pools = multi_list(post_pool_query, list(range(0,4)))
 
-  return render_template("post-pools.html", post_pools=post_pools)
+  return render_template("frontpage/index-pools.html", post_pools=post_pools)
+
+@app.route("/posts")
+def posts():
+  posts_sql = ''' 
+      SELECT A.id, A.post_headline, A.poster, B.username, D.count, E.content, F.post_pool_title
+      FROM Posts A
+      LEFT JOIN PostContents E ON A.id = E.post
+      LEFT JOIN Users B ON A.poster = B.id
+      LEFT JOIN CommentsSections C ON A.id = C.post
+      LEFT JOIN (SELECT comments_section, COUNT(*) AS count FROM Messages GROUP BY comments_section) D
+        ON D.comments_section = C.id
+      LEFT JOIN PostPools F ON A.post_pool = F.id
+    '''
+  posts_query = db.query(posts_sql, [])
+  posts = multi_list(posts_query, list(range(0,7)))
+  return render_template("frontpage/index-posts.html", posts=posts)
 
 
 
