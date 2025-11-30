@@ -37,6 +37,26 @@ def posts():
   posts = multi_list(posts_query, list(range(0,7)))
   return render_template("frontpage/index-posts.html", posts=posts)
 
+@app.route("/users")
+def users():
+# userss_sql = ''' 
+#   '''
+# users_query = db.query(posts_sql, [])
+# users = multi_list(posts_query, list(range(0,0)))
+  users = []
+  return render_template("frontpage/index-users.html", posts=posts)
+
+@app.route("/statistics")
+def statistics():
+# userss_sql = ''' 
+#   '''
+# users_query = db.query(posts_sql, [])
+# users = multi_list(posts_query, list(range(0,0)))
+  statistics = []
+  return render_template("frontpage/index-stats.html", statistics=statistics)
+
+
+
 
 
 @app.route("/user/<int:user_id>")

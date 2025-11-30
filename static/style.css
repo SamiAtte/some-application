@@ -220,6 +220,7 @@ label {
 }
 
 .post-pool-header p {
+  min-height: var(--text-height);
   margin: 2px;
   padding: 5px;
   margin-left: 7px;
@@ -242,7 +243,7 @@ label {
   text-decoration: none;
   margin: 0px;
   padding: 1px;
-  background-color: var(--element-color);
+/*background-color: var(--element-color);*/
 }
 
 
