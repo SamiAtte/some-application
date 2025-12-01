@@ -44,14 +44,14 @@ def posts():
 
 @app.route("/users")
 def users():
-  userss_sql = ''' 
+  users_sql = ''' 
       SELECT A.id, A.username, B.count, C.count, 0
       FROM Users A
       LEFT JOIN (SELECT owner, COUNT(*) AS count FROM PostPools GROUP BY owner) B ON B.owner = A.id
       LEFT JOIN (SELECT poster, COUNT(*) AS count FROM Posts GROUP BY poster) C ON C.poster = A.id
     '''
 #     LEFT JOIN (SELECT commenter, COUNT(*) AS count FROM Messages GROUP BY commenter) D ON C.commenter = A.id
-  users_query = db.query(userss_sql, [])
+  users_query = db.query(users_sql, [])
   users = multi_list(users_query, list(range(0,5)))
   history_update("/users")
   return render_template("frontpage/index-users.html", users=users)
@@ -92,16 +92,19 @@ def user_posts(user_id):
   user_sql = "SELECT username FROM Users WHERE id = ?"
   user_query = db.query(user_sql, [user_id])[0]
 
-# pools_sql= '''
-#     SELECT A.post_pool_title, A.id, B.username, C.count
-#     FROM PostPools A
-#     LEFT JOIN Users B ON B.id = A.owner
-#     LEFT JOIN (SELECT post_pool, COUNT(*) AS count FROM Posts GROUP BY post_pool) C ON C.post_pool = A.id
-#     WHERE owner = ?
-#   '''
-# pools_query = db.query(pools_sql, [user_id])
-# pools = multi_list(pools_query, list(range(0,4)))
-  posts = []
+  posts_sql= '''
+      SELECT A.id, A.post_headline, A.poster, B.username, D.count, E.content, F.post_pool_title
+      FROM Posts A
+      LEFT JOIN PostContents E ON A.id = E.post
+      LEFT JOIN Users B ON A.poster = B.id
+      LEFT JOIN CommentsSections C ON A.id = C.post
+      LEFT JOIN (SELECT comments_section, COUNT(*) AS count FROM Messages GROUP BY comments_section) D
+        ON D.comments_section = C.id
+      LEFT JOIN PostPools F ON A.post_pool = F.id
+      WHERE owner = ?
+    '''
+  posts_query = db.query(posts_sql, [user_id])
+  posts = multi_list(posts_query, list(range(0,4)))
   history_update("/user/" + str(user_id) + "/posts")
   return render_template("user/user-posts.html", user_id=user_id, username=user_query[0], posts=posts)
 
@@ -179,10 +182,11 @@ def history_update(new_entry):
   m = session["history"] if "history" in session else []
   l = ["/pools", "/posts", "/statistics", "/users"]
 
+  print(m)
   if m and m[-1] == new_entry:
     pass
   elif m and re.search(r"/user/[0-9]+/", m[-1]) and re.search(r"/user/[0-9]+/", new_entry):
-     m[-1] = [new_entry]
+     m[-1] = new_entry
   elif new_entry in l:
      m = [new_entry]
   else:
