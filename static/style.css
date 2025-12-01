@@ -2,6 +2,8 @@
 :root {
   --main-width: 500px;
   --account-block-width: 200px;
+  --previous-button-width: 40px;
+  --border-thickness: 3px;
   --main-color: #ccc;
   --border-rounding: 3px;
   --text-height: 15px;
@@ -38,6 +40,38 @@ html {
   border-style: solid;
   margin-bottom: 5px;
 }
+
+.previous-page {
+  width: var(--previous-button-width);
+  height: var(--previous-button-width);
+  left: calc(50% - var(--main-width) / 2 - 5px -  var(--previous-button-width));
+  position:absolute;
+  top: 10px;
+  margin: 1px;
+  padding: 0px;
+  border-style: none;
+  border-radius: var(--border-rounding);
+  border-color: var(--text-color1);
+  background-color: var(--block-color);
+}
+
+.previous-page .form-button {
+  width: var(--previous-button-width);
+  height: var(--previous-button-width);
+  display: inline-block;
+  color: var(--text-color2);
+  background-color: var(--block-color);
+  font-size: 40px;
+  text-align: center;
+  line-height: calc(var(--previous-button-width) - var(--border-thickness));
+}
+
+.previous-page .link-button:hover {
+  color: var(--text-color1);
+  background-color: var(--element-color);
+}
+
+
 
 .account-block {
   width: var(--account-block-width);
@@ -186,7 +220,7 @@ label {
 }
 
 .tab-buttons .horizontal-button-list ul {
-  margin: var(--button-list-margin);
+/*margin: var(--button-list-margin);*/
   border-radius: var(--border-rounding) var(--border-rounding) 0px 0px;
   margin-bottom: 0px;
   padding: var(--button-list-padding);
@@ -220,6 +254,9 @@ label {
   margin: 3px;
   margin-top: 0px;
   padding: 3px;
+  border-style: none solid solid solid;
+  border-color: var(--block-color);
+  border-width: calc(var(--button-list-padding) + var(--horizontal-button-gap) - 1px);
 }
 
 

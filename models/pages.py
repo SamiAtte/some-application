@@ -19,6 +19,8 @@ def pools():
 
   post_pools = multi_list(post_pool_query, list(range(0,4)))
 
+  history_update("/pools")
+
   return render_template("frontpage/index-pools.html", post_pools=post_pools)
 
 @app.route("/posts")
@@ -35,6 +37,7 @@ def posts():
     '''
   posts_query = db.query(posts_sql, [])
   posts = multi_list(posts_query, list(range(0,7)))
+  history_update("/posts")
   return render_template("frontpage/index-posts.html", posts=posts)
 
 @app.route("/users")
@@ -44,6 +47,7 @@ def users():
 # users_query = db.query(posts_sql, [])
 # users = multi_list(posts_query, list(range(0,0)))
   users = []
+  history_update("/users")
   return render_template("frontpage/index-users.html", posts=posts)
 
 @app.route("/statistics")
@@ -53,6 +57,7 @@ def statistics():
 # users_query = db.query(posts_sql, [])
 # users = multi_list(posts_query, list(range(0,0)))
   statistics = []
+  history_update("/statistics")
   return render_template("frontpage/index-stats.html", statistics=statistics)
 
 
@@ -96,6 +101,8 @@ def post_pool(post_pool_id):
   posts_query = db.query(posts_sql, [post_pool_id])
   posts = multi_list(posts_query, list(range(0,6)))
 
+  history_update("/post_pool/" + str(post_pool_id))
+
   return render_template("pool.html", post_pool_info=pool_info[0], posts=posts)
 
 @app.route("/post/<int:post_id>")
@@ -114,7 +121,41 @@ def post(post_id):
   post_query = db.query(post_sql, [post_id])
   post = multi_list(post_query,list(range(0,6)))
 
+  history_update("/post/" + str(post_id))
+
   return render_template("post.html", post=post[0])
+
+
+def history_update(new_entry):
+  m = session["history"] if "history" in session else []
+  l = ["/pools", "/posts", "/users", "/statistics"]
+  if m and m[-1] == new_entry:
+    pass
+  elif new_entry in l:
+     m = [new_entry]
+  else:
+     m.append(new_entry)
+  session["history"] = m
+
+
+@app.route("/previous", methods=["POST"])
+def previous():
+  p = session["history"][-2]
+  session["history"] = session["history"][0:-2]
+  return redirect(p)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

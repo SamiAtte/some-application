@@ -18,28 +18,9 @@
         <li><p id="info">poster: {{ post[4] }}, comments: {{ post[5] }}</p></li>
       </ul>
     </div>
-
-
-{#
-    <div class="tabs">
-      <div class="tab-buttons">
-        <div class="horizontal-button-list" style="--n-buttons:4">
-          <ul>
-            <li><a class="link-button" href="/pools">pools</a></li>
-            <li class="active-tab"><p>posts</p></li>
-            <li><a class="link-button" href="/users">users</a></li>
-            <li><a class="link-button" href="/statistics">statistics</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="tab-content">
-          {% include 'post-list.html' %}
-      </div>
-    </div>
-#}
-
   </main>
   {% include 'account.html' %}
+  {% include 'previous.html' %}
 </body>
 
 </html>
