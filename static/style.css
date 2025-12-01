@@ -14,6 +14,7 @@
   --element-color: #aab;
   --hover-color: #eef;
   --active-color: #778;
+  --headline-color: #222;
   --text-color1: black;
   --text-color2: white;
   --bg-color: #777;
@@ -42,13 +43,25 @@ html {
   background-color: var(--main-color);
   position: relative;
   margin: 10px;
-  padding: 10px;
+  padding: 0px;
   left: calc(50% + var(--main-width) / 2 + 10px);
   border-style: solid;
   border-radius: var(--border-rounding);
 }
 
+.error {
+  color: #f22;
+  font-size: 12px;
+  margin: 0px;
+}
 
+.account-block h3 {
+  color: var(--text-color2);
+  background-color: var(--headline-color);
+  margin: 0px;
+  padding: 5px;
+  border-radius: var(--border-rounding);
+}
 
 
 .vertical-button-list li {
