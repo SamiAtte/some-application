@@ -217,6 +217,7 @@ label {
   border-radius: var(--border-rounding) var(--border-rounding) 0px 0px;
   margin: 0;
   padding: 0;
+  text-shadow: 0 0 3px #000;
 }
 
 .tab-buttons .horizontal-button-list ul {
