@@ -1,0 +1,91 @@
+<div class="account-block">
+  <div class="vertical-button-list">
+    {% if session.username %}
+      <ul>
+        <li class="top">
+          <h3 id="username"> {{ session.username }} </h3>
+        </li>
+        <li><a class="link-button" href="/user/{{ session.user_id }}">User page</a></li>
+        <li><a class="link-button" href="/log_out">Log out</a></li>
+      </ul>
+    {% else %}
+      <form action="/log_in" method="post">
+        <ul>
+          <li>
+            <h3> Log in </h3>
+          </li>
+          <li class="top">
+            <label for="username">username:</label>
+            <input type="text" name="username" class="field"/>
+          </li>
+          <li>
+            <label for="password">password:</label>
+            <input type="text" name="password" class="field"/>
+          </li>
+          {% if session.log_in_error %}
+            <li>
+              <p class="error">Wrong username or password</p>
+            </li>
+          {% endif %}
+          <li>
+            <input type="submit" value="log in" class="form-button"/>
+          </li>
+          <li class="bottom">
+            <li><a class="link-button" href="/sign_in">sign in</a></li>
+          </li>
+        </ul>
+      </form>
+    {% endif %}
+  </div>
+</div>
+      {#
+        <form action="" method="post">
+        <ul>
+          <li class="top">
+            <label for="username">username:</label>
+            <input type="text" name="username" class="field" id="username"/>
+          </li>
+          <li>
+            <label for="password">password:</label>
+            <input type="password" name="password" class="field" id="password"/>
+          </li>
+          <li><a class="link-button" href="">nappi 4</a></li>
+          <li class="bottom"><input type="submit" value="login" class="form-button"/></li>
+        </ul>
+      </form>
+  #}
+ 
+{# 
+  {% if session.username %}
+    <h3 id="username">
+      {{ session.username }}
+    </h3>
+    <ul>
+      <li><a href="/user/{{ session.user_id }}">User page</a></li>
+      <li><a href="/log_out">Log out</a></li>
+    </ul>
+  {% else %}
+    <form action="/log_in" method="post">
+      {% if session.log_in_error %}
+      <p class="error">
+        Wrong username or password
+      </p>
+      {% endif %}
+      <p>
+        Username: <br />
+        <input type="text" name="username" class="field"/>
+      </p>
+      <p>
+        Password: <br />
+        <input type="password" name="password" class="field"/>
+      </p>
+      <input type="submit" value="login" class="login-button"/>
+    </form>
+    <form action="/sign_in">
+      <input type="submit" value="sign in" class="login-button"/>
+    </form>
+  {% endif %}
+  <a href="/">front page</a>
+#}
+
+
