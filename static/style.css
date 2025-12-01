@@ -3,7 +3,7 @@
   --main-width: 500px;
   --account-block-width: 200px;
   --main-color: #ccc;
-  --border-rounding: 4px;
+  --border-rounding: 3px;
   --text-height: 15px;
   --button-height: calc(var(--text-height) + 4px);
   --button-list-margin: 3px;
@@ -28,6 +28,7 @@ html {
   background-color: var(--bg-color);
 }
 
+
 .main {
   background-color: var(--main-color);
   width: var(--main-width);
@@ -42,7 +43,7 @@ html {
   width: var(--account-block-width);
   background-color: var(--main-color);
   position: relative;
-  margin: 10px;
+  margin: 1px;
   padding: 0px;
   left: calc(50% + var(--main-width) / 2 + 10px);
   border-style: solid;
@@ -274,6 +275,24 @@ label {
 }
 
 
+#post {
+  display: block;
+  background-color: var(--element-color);
+  margin: 5px;
+  min-height: 50px;
+  border-radius: var(--border-rounding);
+  padding: 3px;
+  text-align: left;
+}
+
+#info {
+  display: block;
+  background-color: var(--element-color);
+  margin: 5px;
+  border-radius: var(--border-rounding);
+  padding: 3px;
+  text-align: left;
+}
 
 
 

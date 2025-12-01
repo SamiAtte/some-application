@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% from "macros.html" import link_button, text_link %}
+<html>
+
+<head>
+  <title>some-app</title>
+</head>
+
+<body>
+  <link rel="stylesheet" href="/static/style.css">
+  <main class="main">
+    <h1>{{ post_pool_info[0] }}</h1>
+    {% include 'post-list.html' %}
+{#
+    <div class="tabs">
+      <div class="tab-buttons">
+        <div class="horizontal-button-list" style="--n-buttons:4">
+          <ul>
+            <li><a class="link-button" href="/pools">pools</a></li>
+            <li class="active-tab"><p>posts</p></li>
+            <li><a class="link-button" href="/users">users</a></li>
+            <li><a class="link-button" href="/statistics">statistics</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="tab-content">
+          {% include 'post-list.html' %}
+      </div>
+    </div>
+#}
+
+  </main>
+  {% include 'account.html' %}
+</body>
+
+</html>
+
