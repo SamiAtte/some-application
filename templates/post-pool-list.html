@@ -1,6 +1,6 @@
 
 {% from "macros.html" import link_button, post_pool_header %}
-<div class="pool-list">
+<div class="header-list">
   <ul>
     {% for post_pool in post_pools %}
     <li>{{ link_button("/post_pool/", post_pool[1], post_pool_header(post_pool[0],post_pool[2],post_pool[3])) }}</li>

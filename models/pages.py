@@ -3,6 +3,8 @@ import db
 from utilities import multi_list
 from app1 import app
 
+import re
+
 
 
 
@@ -42,13 +44,17 @@ def posts():
 
 @app.route("/users")
 def users():
-# userss_sql = ''' 
-#   '''
-# users_query = db.query(posts_sql, [])
-# users = multi_list(posts_query, list(range(0,0)))
-  users = []
+  userss_sql = ''' 
+      SELECT A.id, A.username, B.count, C.count, 0
+      FROM Users A
+      LEFT JOIN (SELECT owner, COUNT(*) AS count FROM PostPools GROUP BY owner) B ON B.owner = A.id
+      LEFT JOIN (SELECT poster, COUNT(*) AS count FROM Posts GROUP BY poster) C ON C.poster = A.id
+    '''
+#     LEFT JOIN (SELECT commenter, COUNT(*) AS count FROM Messages GROUP BY commenter) D ON C.commenter = A.id
+  users_query = db.query(userss_sql, [])
+  users = multi_list(users_query, list(range(0,5)))
   history_update("/users")
-  return render_template("frontpage/index-users.html", posts=posts)
+  return render_template("frontpage/index-users.html", users=users)
 
 @app.route("/statistics")
 def statistics():
@@ -64,17 +70,60 @@ def statistics():
 
 
 
-@app.route("/user/<int:user_id>")
-def user_page(user_id):
+@app.route("/user/<int:user_id>/pools")
+def user_pools(user_id):
   user_sql = "SELECT username FROM Users WHERE id = ?"
   user_query = db.query(user_sql, [user_id])[0]
 
-  post_sql= "SELECT post_pool_title,id FROM PostPools WHERE owner = ?"
-  post_query = db.query(post_sql, [user_id])
+  pools_sql= '''
+      SELECT A.post_pool_title, A.id, B.username, C.count
+      FROM PostPools A
+      LEFT JOIN Users B ON B.id = A.owner
+      LEFT JOIN (SELECT post_pool, COUNT(*) AS count FROM Posts GROUP BY post_pool) C ON C.post_pool = A.id
+      WHERE owner = ?
+    '''
+  pools_query = db.query(pools_sql, [user_id])
+  pools = multi_list(pools_query, list(range(0,4)))
+  history_update("/user/" + str(user_id) + "/pools")
+  return render_template("user/user-pools.html", user_id=user_id, username=user_query[0], post_pools=pools)
 
-  post_pools = multi_list(post_query,[0,1])
+@app.route("/user/<int:user_id>/posts")
+def user_posts(user_id):
+  user_sql = "SELECT username FROM Users WHERE id = ?"
+  user_query = db.query(user_sql, [user_id])[0]
 
-  return render_template("user-page.html", user_id=user_id, username=user_query[0], post_pools=post_pools)
+# pools_sql= '''
+#     SELECT A.post_pool_title, A.id, B.username, C.count
+#     FROM PostPools A
+#     LEFT JOIN Users B ON B.id = A.owner
+#     LEFT JOIN (SELECT post_pool, COUNT(*) AS count FROM Posts GROUP BY post_pool) C ON C.post_pool = A.id
+#     WHERE owner = ?
+#   '''
+# pools_query = db.query(pools_sql, [user_id])
+# pools = multi_list(pools_query, list(range(0,4)))
+  posts = []
+  history_update("/user/" + str(user_id) + "/posts")
+  return render_template("user/user-posts.html", user_id=user_id, username=user_query[0], posts=posts)
+
+@app.route("/user/<int:user_id>/statistics")
+def user_stats(user_id):
+  user_sql = "SELECT username FROM Users WHERE id = ?"
+  user_query = db.query(user_sql, [user_id])[0]
+
+# pools_sql= '''
+#     SELECT A.post_pool_title, A.id, B.username, C.count
+#     FROM PostPools A
+#     LEFT JOIN Users B ON B.id = A.owner
+#     LEFT JOIN (SELECT post_pool, COUNT(*) AS count FROM Posts GROUP BY post_pool) C ON C.post_pool = A.id
+#     WHERE owner = ?
+#   '''
+# pools_query = db.query(pools_sql, [user_id])
+# pools = multi_list(pools_query, list(range(0,4)))
+  history_update("/user/" + str(user_id) + "/statistics")
+  return render_template("user/user-stats.html", user_id=user_id, username=user_query[0])
+
+
+
 
 
 @app.route("/post_pool/<int:post_pool_id>")
@@ -128,9 +177,12 @@ def post(post_id):
 
 def history_update(new_entry):
   m = session["history"] if "history" in session else []
-  l = ["/pools", "/posts", "/users", "/statistics"]
+  l = ["/pools", "/posts", "/statistics", "/users"]
+
   if m and m[-1] == new_entry:
     pass
+  elif m and re.search(r"/user/[0-9]+/", m[-1]) and re.search(r"/user/[0-9]+/", new_entry):
+     m[-1] = [new_entry]
   elif new_entry in l:
      m = [new_entry]
   else:

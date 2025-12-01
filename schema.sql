@@ -3,6 +3,7 @@
 
 CREATE TABLE Messages (
   id INTEGER PRIMARY KEY,
+  commenter INTEGER,
   comments_section INTEGER,
   message_target INTEGER,
   message_content INTEGER,

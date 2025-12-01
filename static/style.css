@@ -295,7 +295,7 @@ label {
 
 
 
-.pool-list li {
+.header-list li {
   list-style: none;
   text-decoration: none;
   width: calc(100% - 14px);
@@ -303,7 +303,7 @@ label {
   background-color: var(--pool-header-bg);
 }
 
-.pool-list ul {
+.header-list ul {
   list-style: none;
   text-decoration: none;
   margin: 0px;
