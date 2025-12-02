@@ -4,9 +4,23 @@ import db
 from app1 import app
 
 
-@app.route("/sign_in/")
+@app.route("/sign_in", methods=["POST"])
 def sign_in():
-  return render_template("sign-in.html")
+  session["sign_in"] = True
+  return redirect(session["history"][-1])
+
+@app.route("/cancel_sign_in", methods=["POST"])
+def cancel_sign_in():
+  del session["sign_in"] 
+  if "sign_in_attempt" in session:
+    del session["sign_in_attempt"]
+  if "no_match" in session:
+    del session["no_match"]
+  if "name_not_available" in session:
+    del session["name_not_available"]
+  return redirect(session["history"][-1])
+
+
 
 @app.route("/log_in", methods=["POST"])
 def log_in():
@@ -17,7 +31,7 @@ def log_in():
   query = db.query(sql, [username])
   if not query:
     session["log_in_error"] = True
-    return redirect("/")
+    return redirect(session["history"][-1])
   query = query[0]
   password_hash = query[1]
 
@@ -26,21 +40,22 @@ def log_in():
     session["user_id"] = query[0]
     if "log_in_error" in session:
       del session["log_in_error"] 
-    return redirect("/")
+    return redirect(session["history"][-1])
   else:
     session["log_in_error"] = True
-    return redirect("/")
+    return redirect(session["history"][-1])
 
 @app.route("/log_out")
 def log_out():
     del session["username"]
     del session["user_id"]
-    return redirect("/")
+    return redirect(session["history"][-1])
 
 
 
 @app.route("/register", methods=["POST"])
 def register():
+  print("täällä")
   username = request.form["username"]
   password1 = request.form["password1"]
   password2 = request.form["password2"]
@@ -48,8 +63,8 @@ def register():
   if password1 != password2:
     session["sign_in_attempt"] = username
     session["no_match"] = True
-    session["retry"] = True
-    return redirect("/sign_in")
+    #session["retry"] = True
+    return redirect(session["history"][-1])
 
   if "no_match" in session:
     del session["no_match"];
@@ -58,8 +73,8 @@ def register():
   if taken:
     session["sign_in_attempt"] = username
     session["name_not_available"] = True
-    session["retry"] = True
-    return redirect("/sign_in")
+    #session["retry"] = True
+    return redirect(session["history"][-1])
 
   password_hash = generate_password_hash(password1)
   try:
@@ -77,6 +92,6 @@ def register():
   if "sign_in_attempt" in session:
     del session["sign_in_attempt"];
 
-  return redirect("/")
+  return redirect(session["history"][-1])
 
 

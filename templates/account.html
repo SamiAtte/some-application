@@ -8,33 +8,77 @@
         <li><a class="link-button" href="/user/{{ session.user_id }}/pools">User page</a></li>
         <li><a class="link-button" href="/log_out">Log out</a></li>
       </ul>
-    {% else %}
-      <form action="/log_in" method="post">
+    {% elif  session.sign_in %}
         <ul>
+          <form action="/register" method="post">
           <li>
-            <h3> Log in </h3>
+            <h3> Sign in </h3>
           </li>
+          {% if session.name_not_available %}
+            <li>
+              <p class="error">Username is not available</p>
+            </li>
+          {% endif %}
           <li class="top">
             <label for="username">username:</label>
-            <input type="text" name="username" class="field"/>
+            {% if session.sign_in_attempt %}
+              <input type="text" name="username" value={{ session.sign_in_attempt }} class="field" />
+            {% else %}
+              <input type="text" name="username" class="field"/>
+            {% endif %}
           </li>
-          <li>
-            <label for="password">password:</label>
-            <input type="password" name="password" class="field"/>
-          </li>
-          {% if session.log_in_error %}
+          {% if session.no_match %}
             <li>
-              <p class="error">Wrong username or password</p>
+              <p class="error">Passwords do not match</p>
             </li>
           {% endif %}
           <li>
-            <input type="submit" value="log in" class="form-button"/>
+            <label for="password">password:</label>
+            <input type="password" name="password1" class="field"/>
           </li>
+          <li>
+            <label for="repeat_password">repeat password:</label>
+            <input type="password" name="password2" class="field"/>
+          </li>
+          <li>
+            <input type="submit" value="sign in" class="form-button"/>
+          </li>
+          </form>
+          <form action="/cancel_sign_in" method="post">
           <li class="bottom">
-            <li><a class="link-button" href="/sign_in">sign in</a></li>
+            <input type="submit" value="cancel" class="form-button"/>
           </li>
+          </form>
         </ul>
-      </form>
+    {% else %}
+      <ul>
+        <form action="/log_in" method="post">
+        <li>
+          <h3> Log in </h3>
+        </li>
+        <li class="top">
+          <label for="username">username:</label>
+          <input type="text" name="username" class="field"/>
+        </li>
+        <li>
+          <label for="password">password:</label>
+          <input type="password" name="password" class="field"/>
+        </li>
+        {% if session.log_in_error %}
+          <li>
+            <p class="error">Wrong username or password</p>
+          </li>
+        {% endif %}
+        <li>
+          <input type="submit" value="log in" class="form-button"/>
+        </li>
+        </form>
+        <form action="/sign_in" method="post">
+        <li class="bottom">
+          <input type="submit" value="sign in" class="form-button"/>
+        </li>
+        </form>
+      </ul>
     {% endif %}
   </div>
 </div>
