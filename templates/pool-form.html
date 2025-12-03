@@ -1,0 +1,16 @@
+<div class="content-form">
+<h4>new pool</h4>
+<div class="vertical-button-list">
+<form action={{'user/' ~ session.user_id ~ '/create_post_pool'}} method="post">
+  <ul>
+    <li>
+      <label for="pool-name">title:</label>
+      <input type="text" name="title" class="field"/>
+    </li>
+    <li>
+      <input type="submit" value="create" class="form-button"/>
+    </li>
+  </ul>
+</form> 
+</div>
+</div>

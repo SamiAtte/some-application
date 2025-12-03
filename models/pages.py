@@ -18,11 +18,8 @@ def pools():
       LEFT JOIN (SELECT post_pool, COUNT(*) AS count FROM Posts GROUP BY post_pool) C ON C.post_pool = A.id
     '''
   post_pool_query = db.query(post_pool_sql, [])
-
   post_pools = multi_list(post_pool_query, list(range(0,4)))
-
   history_update("/pools")
-
   return render_template("frontpage/index-pools.html", post_pools=post_pools)
 
 @app.route("/posts")
@@ -74,7 +71,6 @@ def statistics():
 def user_pools(user_id):
   user_sql = "SELECT username FROM Users WHERE id = ?"
   user_query = db.query(user_sql, [user_id])[0]
-
   pools_sql= '''
       SELECT A.post_pool_title, A.id, B.username, C.count
       FROM PostPools A
@@ -132,13 +128,13 @@ def user_stats(user_id):
 @app.route("/post_pool/<int:post_pool_id>")
 def post_pool(post_pool_id):
   pool_sql = '''
-      SELECT A.post_pool_title, B.id, B.username
+      SELECT A.post_pool_title, A.id, B.id, B.username
       FROM PostPools A
       LEFT JOIN Users B ON A.owner = B.id
       WHERE A.id = ?
     '''
   pool_query = db.query(pool_sql, [post_pool_id])
-  pool_info = multi_list(pool_query, list(range(0,3)))
+  pool_info = multi_list(pool_query, list(range(0,4)))
 
   posts_sql = ''' 
       SELECT A.id, A.post_headline, A.poster, B.username, D.count, E.content
@@ -181,8 +177,6 @@ def post(post_id):
 def history_update(new_entry):
   m = session["history"] if "history" in session else []
   l = ["/pools", "/posts", "/statistics", "/users"]
-
-  print(m)
   if m and m[-1] == new_entry:
     pass
   elif m and re.search(r"/user/[0-9]+/", m[-1]) and re.search(r"/user/[0-9]+/", new_entry):

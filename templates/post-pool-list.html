@@ -1,5 +1,9 @@
 
 {% from "macros.html" import link_button, post_pool_header %}
+{% if session.user_id and front_page or session.user_id is sameas user_id %}
+{% include 'pool-form.html' %}
+{% endif %}
+{% include 'search-block.html' %}
 <div class="header-list">
   <ul>
     {% for post_pool in post_pools %}

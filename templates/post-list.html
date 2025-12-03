@@ -1,4 +1,8 @@
 {% from "macros.html" import link_button, post_header %}
+{% if session.user_id and pool_page %}
+{% include 'post-form.html' %}
+{% endif %}
+{% include 'search-block.html' %}
 <div class="header-list">
   <ul>
     {% for post in posts %}

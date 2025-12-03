@@ -1,0 +1,19 @@
+<div class="content-form">
+<h4>new post</h4>
+<div class="vertical-button-list">
+<form action={{'/pool/' ~ pool_id ~ '/' ~ session.user_id ~ '/submit_post'}} method="post">
+  <ul>
+    <li>
+      <label for="headline">headline:</label>
+      <input type="text" name="headline" class="field"/>
+    </li>
+    <li>
+      <textarea name="content" class="content-field"></textarea>
+    </li>
+    <li>
+      <input type="submit" value="submit" class="form-button"/>
+    </li>
+  </ul>
+</form> 
+</div>
+</div>

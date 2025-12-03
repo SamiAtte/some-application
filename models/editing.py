@@ -25,12 +25,7 @@ def delete_post_pool(post_pool_id):
   return redirect("/")
 
 
-@app.route("/post_pool/<int:post_pool_id>/<int:user_id>/make_post")
-def make_post(post_pool_id, user_id):
-  return render_template("make-post.html", post_pool_id=post_pool_id)
-
-
-@app.route("/post_pool/<int:post_pool_id>/<int:user_id>/submit_post", methods=["POST"])
+@app.route("/pool/<int:post_pool_id>/<int:user_id>/submit_post", methods=["POST"])
 def submit_post(post_pool_id, user_id):
   headline = request.form["headline"]
   content = request.form["content"]
@@ -54,12 +49,8 @@ def submit_post(post_pool_id, user_id):
   except sqlite3.IntegrityError:
     return "Error while trying to make comment section"
 
-  return redirect("/post_pool/" + str(post_pool_id))
+  return redirect(session["history"][-1])
 
-
-@app.route("/user/<int:user_id>/make_post_pool")
-def make_post_pool(user_id):
-  return render_template("make-post-pool.html", user_id=user_id)
 
 @app.route("/user/<int:user_id>/create_post_pool", methods=["POST"])
 def create_post_pool(user_id):
@@ -71,6 +62,6 @@ def create_post_pool(user_id):
   except sqlite3.IntegrityError:
     return "Error while trying to create new post pool"
 
-  return redirect("/user/" + str(user_id))
+  return redirect(session["history"][-1])
 
 

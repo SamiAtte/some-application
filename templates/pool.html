@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="/static/style.css">
   <main class="main">
     <h1>{{ post_pool_info[0] }}</h1>
+    {% set pool_page = true %}
+    {% set pool_id = post_pool_info[1] %}
     {% include 'post-list.html' %}
   </main>
   {% include 'account.html' %}

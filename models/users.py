@@ -9,6 +9,7 @@ def sign_in():
   session["sign_in"] = True
   return redirect(session["history"][-1])
 
+
 @app.route("/cancel_sign_in", methods=["POST"])
 def cancel_sign_in():
   del session["sign_in"] 
@@ -19,7 +20,6 @@ def cancel_sign_in():
   if "name_not_available" in session:
     del session["name_not_available"]
   return redirect(session["history"][-1])
-
 
 
 @app.route("/log_in", methods=["POST"])
@@ -45,6 +45,7 @@ def log_in():
     session["log_in_error"] = True
     return redirect(session["history"][-1])
 
+
 @app.route("/log_out")
 def log_out():
     del session["username"]
@@ -52,10 +53,8 @@ def log_out():
     return redirect(session["history"][-1])
 
 
-
 @app.route("/register", methods=["POST"])
 def register():
-  print("täällä")
   username = request.form["username"]
   password1 = request.form["password1"]
   password2 = request.form["password2"]
@@ -63,7 +62,6 @@ def register():
   if password1 != password2:
     session["sign_in_attempt"] = username
     session["no_match"] = True
-    #session["retry"] = True
     return redirect(session["history"][-1])
 
   if "no_match" in session:
@@ -73,7 +71,6 @@ def register():
   if taken:
     session["sign_in_attempt"] = username
     session["name_not_available"] = True
-    #session["retry"] = True
     return redirect(session["history"][-1])
 
   password_hash = generate_password_hash(password1)
@@ -83,8 +80,6 @@ def register():
   except sqlite3.IntegrityError:
     return "Error while trying to sign in"
   
-  if "retry" in session:
-    del session["retry"];
   if "no_match" in session:
     del session["no_match"];
   if "name_not_available" in session:
